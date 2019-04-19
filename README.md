@@ -19,7 +19,7 @@ Add it to your plugins:
 
 cypress/plugins/index.js
 ```javascript
-const { cucumber } = require('cypress-cucumber-preprocessor').default;
+const cucumber = require('cypress-cucumber-preprocessor').default;
 module.exports = (on, config) => {
   on('file:preprocessor', cucumber())
 }
