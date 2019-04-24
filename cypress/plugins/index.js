@@ -1,5 +1,10 @@
-const cucumber = require("cypress-cucumber-preprocessor").default; // eslint-disable-line
+const {
+  cucumber,
+  writeCucumberJson
+} = require("cypress-cucumber-preprocessor"); // eslint-disable-line
 
 module.exports = on => {
+  on("task", { writeCucumberJson });
+
   on("file:preprocessor", cucumber());
 };
