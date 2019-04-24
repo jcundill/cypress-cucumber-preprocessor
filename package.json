@@ -73,7 +73,7 @@
     "cucumberJson": {
       "generate": true,
       "outputFolder": "input",
-      "filePrefix": "newstyle-"
+      "filePrefix": "cucumber-"
     }
   }
 }
