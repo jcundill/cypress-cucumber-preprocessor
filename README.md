@@ -19,43 +19,11 @@ Add it to your plugins:
 
 cypress/plugins/index.js
 ```javascript
-const cucumber = require('cypress-cucumber-preprocessor').default;
+const cucumber = require('cypress-cucumber-preprocessor').default
 module.exports = (on, config) => {
   on('file:preprocessor', cucumber())
 }
 ```
-
-### cucumber.json file generation
-
-If you want the plugin to create cucumber.json files as it runs the gherkin features, register the cucumber.json writer as a task along with the file:preprocessor
-
-```javascript 
-const { cucumber, writeCucumberJson } = require('cypress-cucumber-preprocessor')
-module.exports = (on, config) => {
-  on('file:preprocessor', cucumber())
-  on('task', { writeCucumberJson })
-}
-```
-
-Cucumber json generation is turned off by default even with the task configured. Use cosmiconfig to create a configuration for the plugin and add the following to the cypress-cucumber-preprocessor section in package.json to turn it on:
-
-```
-  "cypress-cucumber-preprocessor": {
-    "cucumberJson": {
-      "generate": true,
-      "outputFolder": "cucumberjson",
-      "filePrefix": "cucumber-"
-    }
-  }
-```
-
-Here:
-
-outputFolder: The folder to write the files to, defaults to ```cwd```
-
-filePrefix: A separate json file is generated for each feature based on the name of the feature file. All generated files will be prefixed with this option if specified.
-
-generate: Flag, output cucumber.json or not, defaults to false.
 
 ### Feature files
 
@@ -84,7 +52,7 @@ Feature: The Facebook
 ###### Configuration
 First please use [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to create a configuration for the plugin, for example put this section:
 
-```
+```json
 "cypress-cucumber-preprocessor": {
   "nonGlobalStepDefinitions": true
 }
@@ -139,7 +107,7 @@ The problem with the legacy structure is that everything is global. This is prob
 If you have a few tests the "oldschool" style is completely fine. But for a large enterprise-grade application, with hundreds or sometimes thousands of .feature files, the fact that everything is global becomes a maintainability nightmare. 
 
 We suggest to put: 
-```
+```json
   "ignoreTestFiles": "*.js"
 ```
 in your cypress.json to have a clean view of your tests in the cypress dashbord, and also so cypress doesn't try to run your step definition files as tests in CI. 
@@ -149,7 +117,7 @@ in your cypress.json to have a clean view of your tests in the cypress dashbord,
 ##### Step Definition location configuration
 Step definition files are by default in: cypress/support/step_definitions. If you want to put them somewhere please use [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) format. For example, add to your package.json :
 
-```
+```javascript
   "cypress-cucumber-preprocessor": {
     "step_definitions": "cypress/support/step_definitions/"
   }
@@ -255,7 +223,7 @@ Then('I see new item added', () => {
 });
 
 Then('I can add another item', () => {
-  expect(cy.get('@addNewItemInput').should('be.empty'));
+  expect(cy.get('@addNewItemInput').should('be.empty');
 });
 
 ```
