@@ -62,6 +62,7 @@ typings/
 cypress/videos
 cypress/screenshots
 cypress/cucumber-json
+target
 
 #optional .vscode settings directory
 .vscode
