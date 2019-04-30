@@ -295,7 +295,8 @@ and add the following to the cypress-cucumber-preprocessor section in package.js
     "cucumberJson": {
       "generate": true,
       "outputFolder": "cucumber-json",
-      "filePrefix": "cucumber-"
+      "filePrefix": "cucumber-",
+      "fileSuffix": ""
     }
   }
 ```
@@ -305,6 +306,8 @@ Here:
 outputFolder: The folder to write the files to, defaults to ```./cypress/cucumber-json```
 
 filePrefix: A separate json file is generated for each feature based on the name of the feature file. All generated file names will be prefixed with this option if specified.
+
+fileSuffix: A suffix to add to each generated filename, defaults to '.cucumber'
 
 generate: Flag, output cucumber.json or not, defaults to true.
 
