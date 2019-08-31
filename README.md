@@ -336,6 +336,27 @@ The **cypress-cucumber-preprocessor** can generate a `cucumber.json` file output
 These files are intended to be used with one of the many available Cucumber report generator packages. 
 Seems to work fine with both https://github.com/jenkinsci/cucumber-reports-plugin and https://github.com/wswebcreation/multiple-cucumber-html-reporter
 
+The `cucumber.json` file generation is handled as a Cypress [task](https://docs.cypress.io/api/commands/task.html) and so needs registering in `cypress/plugins/index.js` 
+
+````javascript
+const cucumber = require("cypress-cucumber-preprocessor").default;
+const { generateCucumberJson } = require("cypress-cucumber-preprocessor").generateCucumberJson; 
+
+module.exports = on => {
+  on("file:preprocessor", cucumber());
+
+  // register the cucumber.json generator task 
+  on("task", {
+    generateCucumberJson
+  });
+};
+
+````
+
+**Note:** Prior to version `1.16.1` of the **cypress-cucumber-preprocessor** json file generation was handled without using an additional cypress task. 
+If upgrading from an earlier version, the pluginfile configuration will need adding.
+
+
 Output, by default, is written to the folder `cypress/cucumber-json`, and one file is generated per feature.
  
 This behaviour is configurable. Use [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to create a configuration for the plugin, see step definition discussion above and add the following to the cypress-cucumber-preprocessor section in package.json to turn it off or change the defaults:
