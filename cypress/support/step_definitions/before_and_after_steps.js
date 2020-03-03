@@ -15,6 +15,7 @@ let flagSetByTaggedAfter = false;
 Before(() => {
   beforeCounter += 1;
   beforeWithTagCounter = 0;
+  cy.log("Before Called");
 });
 
 Before({ tags: "@withTaggedBefore" }, () => {
@@ -36,6 +37,7 @@ After({ tags: "@willNeverRun" }, () => {
 After(() => {
   beforeCounter = 0;
   flagSetByUntaggedAfter = true;
+  cy.log("After called");
 });
 
 After({ tags: "@withTaggedAfter" }, () => {
@@ -70,4 +72,8 @@ Then("Flag should be set by untagged After", () => {
 
 Then("Flag should be set by tagged After", () => {
   expect(flagSetByTaggedAfter).to.equal(true);
+});
+
+Then("An error happens", () => {
+  expect(true).to.equal(false);
 });
